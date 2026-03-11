@@ -16,6 +16,7 @@ services:
       DB_DATABASE: laravel
       DB_USERNAME: laravel
       DB_PASSWORD: secret
+      QUEUE_CONNECTION: database
     depends_on:
       mysql:
         condition: service_healthy
