@@ -44,3 +44,19 @@ docker compose stop
 
 - 速度改善のためvendorフォルダはコンテナ側のボリュームとして定義しており、ホスト側には出てこない点に注意
   - IDEで参照が切れるのを防ぎたい場合は `docker compose cp app:/var/www/html/vendor .` でホスト側にコピーしてくると良い
+
+## cookieブランチの説明
+
+このブランチでは cookie を使ったサンプルを実装している。
+
+- ステートレス（cookie/セッションを使わない）: http://localhost:8000/stateless
+  - 名前をPOSTしてもサーバー側で保持しないため、次のリクエストでは常に「はじめまして」になる
+- ステートフル（cookieでセッション維持）: http://localhost:8000/stateful
+  - 名前をPOSTするとセッションに保存され、次のリクエストで「こんにちは {名前} さん」になる
+- 任意のcookieをレスポンスに含める: http://localhost:8000/setcookie
+  - このページを閲覧すると `testKey` という名前のcookieがブラウザに保存される
+
+### 最初に実行すること
+
+このリポジトリには `sessions` テーブル用マイグレーションを追加してある。
+`php artisan migrate:status` で操作対象が正しいことを確認してから `php artisan migrate:fresh` を実行すること。
