@@ -51,10 +51,14 @@ docker compose stop
   - 簡単な送料計算を行うウェブサイト
   - コントローラー app\Http\Controllers\ShippingFeeController.php
   - 計算ロジック app\Services\ShippingFeeCalculator.php
+  - 簡単な仕様
+    - 配送区分は「本州・四国・九州」「離島」「沖縄」があり、それぞれ配送料金は800円・1200円・1500円である
+    - ただし、商品合計金額が10000円以上の場合は配送料金が0円となる
 - テストコード
   - tests\Feature\ShippingPageTest.php
     - E2Eテストではなく擬似リクエストを投げるタイプ
   - tests\Unit\ShippingFeeCalculatorTest.php
     - ShippingFeeCalculatorクラスの単体テスト
 - テスト用の画面は http://127.0.0.1:8000/shipping
+- テストコードのひな型生成は `docker compose exec app php artisan make:test XxxTest --unit` で行う
 - テストの実行は `docker compose exec app php artisan test` で行う
