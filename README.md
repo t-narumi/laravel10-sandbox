@@ -44,3 +44,17 @@ docker compose stop
 
 - 速度改善のためvendorフォルダはコンテナ側のボリュームとして定義しており、ホスト側には出てこない点に注意
   - IDEで参照が切れるのを防ぎたい場合は `docker compose cp app:/var/www/html/vendor .` でホスト側にコピーしてくると良い
+
+## unit-testブランチの説明
+
+- テスト対象の説明
+  - 簡単な送料計算を行うウェブサイト
+  - コントローラー app\Http\Controllers\ShippingFeeController.php
+  - 計算ロジック app\Services\ShippingFeeCalculator.php
+- テストコード
+  - tests\Feature\ShippingPageTest.php
+    - E2Eテストではなく擬似リクエストを投げるタイプ
+  - tests\Unit\ShippingFeeCalculatorTest.php
+    - ShippingFeeCalculatorクラスの単体テスト
+- テスト用の画面は http://127.0.0.1:8000/shipping
+- テストの実行は `docker compose exec app php artisan test` で行う
