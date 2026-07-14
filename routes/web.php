@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Member;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,3 +51,15 @@ Route::get('/members/{member}', function (Member $member) {
         'member' => $member,
     ]);
 })->whereNumber('member')->name('members.show');
+
+Route::get('/posts/chat', function () {
+    $posts = Post::query()
+        ->with(['member:id,name'])
+        ->orderBy('created_at')
+        ->orderBy('id')
+        ->get();
+
+    return view('posts.chat', [
+        'posts' => $posts,
+    ]);
+})->name('posts.chat');

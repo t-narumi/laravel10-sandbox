@@ -71,7 +71,13 @@ class MemberSeeder extends Seeder
 
         $now = now();
 
-        foreach ($members as &$member) {
+        foreach ($members as $index => &$member) {
+            $member['withdrawn_on'] = match ($index % 15) {
+                4 => '2024-03-31',
+                9 => '2024-12-31',
+                14 => '2025-06-30',
+                default => null,
+            };
             $member['created_at'] = $now;
             $member['updated_at'] = $now;
         }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedInteger('age');
+            $table->date('withdrawn_on')->nullable();
             $table->timestamps();
         });
     }

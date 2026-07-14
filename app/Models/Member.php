@@ -11,6 +11,16 @@ class Member extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'age',
+        'withdrawn_on',
+    ];
+
+    protected $casts = [
+        'withdrawn_on' => 'date',
+    ];
+
     public function phone(): HasOne
     {
         return $this->hasOne(Phone::class);

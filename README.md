@@ -64,4 +64,5 @@ php artisan db:seed --class=Database\Seeders\DatabaseSeeder
 
 http://127.0.0.1:8000/members/phones
 http://127.0.0.1:8000/members
+http://127.0.0.1:8000/posts/chat
 ```
