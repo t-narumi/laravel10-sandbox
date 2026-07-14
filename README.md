@@ -47,6 +47,8 @@ docker compose stop
 
 
 ```
+docker compose exec app 
+
 php artisan make:model Member -ms
 php artisan make:model Phone -ms
 php artisan make:model Post -ms
@@ -61,4 +63,5 @@ php artisan db:seed --class=Database\Seeders\PhoneSeeder
 php artisan db:seed --class=Database\Seeders\DatabaseSeeder
 
 http://127.0.0.1:8000/members/phones
+http://127.0.0.1:8000/members
 ```

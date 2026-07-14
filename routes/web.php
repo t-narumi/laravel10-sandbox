@@ -28,3 +28,25 @@ Route::get('/members/phones', function () {
         'members' => $members,
     ]);
 })->name('members.phones.index');
+
+Route::get('/members', function () {
+    $members = Member::query()
+        ->withCount('posts')
+        ->orderBy('id')
+        ->get();
+
+    return view('members.index', [
+        'members' => $members,
+    ]);
+})->name('members.index');
+
+Route::get('/members/{member}', function (Member $member) {
+    $member->load([
+        'phone',
+        'posts' => fn ($query) => $query->orderBy('id'),
+    ]);
+
+    return view('members.show', [
+        'member' => $member,
+    ]);
+})->whereNumber('member')->name('members.show');

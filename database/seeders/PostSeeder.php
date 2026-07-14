@@ -136,6 +136,10 @@ class PostSeeder extends Seeder
         $contentIndex = 0;
 
         foreach ($members as $index => $member) {
+            if ($index % 10 === 0) {
+                continue;
+            }
+
             $postsPerMember = match ($index % 10) {
                 4 => 3,
                 9 => 4,
