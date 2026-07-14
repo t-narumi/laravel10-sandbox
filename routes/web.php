@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/members/phones', function () {
+    $members = Member::query()
+        ->with('phone')
+        ->orderBy('id')
+        ->get();
+
+    return view('member-phones.index', [
+        'members' => $members,
+    ]);
+})->name('members.phones.index');

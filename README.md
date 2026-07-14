@@ -44,3 +44,21 @@ docker compose stop
 
 - 速度改善のためvendorフォルダはコンテナ側のボリュームとして定義しており、ホスト側には出てこない点に注意
   - IDEで参照が切れるのを防ぎたい場合は `docker compose cp app:/var/www/html/vendor .` でホスト側にコピーしてくると良い
+
+
+```
+php artisan make:model Member -ms
+php artisan make:model Phone -ms
+php artisan make:model Post -ms
+
+php artisan migrate:status
+
+php artisan migrate:fresh
+
+php artisan db:seed --class=Database\Seeders\MemberSeeder
+php artisan db:seed --class=Database\Seeders\PhoneSeeder
+
+php artisan db:seed --class=Database\Seeders\DatabaseSeeder
+
+http://127.0.0.1:8000/members/phones
+```
