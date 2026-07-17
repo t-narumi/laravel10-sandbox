@@ -3,22 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Post extends Model
+class AdminPost extends Model
 {
     use HasFactory;
 
-    protected static function booted(): void
-    {
-        static::addGlobalScope('active_member_posts', function (Builder $builder) {
-            $builder->whereHas('member', function (Builder $query) {
-                $query->whereNull('withdrawn_on');
-            });
-        });
-    }
+    protected $table = 'posts';
 
     protected $fillable = [
         'member_id',

@@ -63,3 +63,15 @@ Route::get('/posts/chat', function () {
         'posts' => $posts,
     ]);
 })->name('posts.chat');
+
+Route::get('/admin/posts/chat', function () {
+    $posts = \App\Models\AdminPost::query()
+        ->with(['member:id,name,withdrawn_on'])
+        ->orderBy('created_at')
+        ->orderBy('id')
+        ->get();
+
+    return view('admin.posts.chat', [
+        'posts' => $posts,
+    ]);
+})->name('admin.posts.chat');
