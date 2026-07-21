@@ -52,6 +52,18 @@ Route::get('/members/{member}', function (Member $member) {
     ]);
 })->whereNumber('member')->name('members.show');
 
+Route::get('/members/roles', function () {
+    $members = Member::query()
+        ->withCount('roles')
+        ->with(['roles' => fn ($query) => $query->orderBy('roles.id')])
+        ->orderBy('id')
+        ->get();
+
+    return view('member-roles.index', [
+        'members' => $members,
+    ]);
+})->name('members.roles.index');
+
 Route::get('/posts/chat', function () {
     $posts = Post::query()
         ->with(['member:id,name'])

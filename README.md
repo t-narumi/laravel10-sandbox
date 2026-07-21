@@ -55,7 +55,7 @@ php artisan make:model Post -ms
 
 php artisan migrate:status
 
-php artisan migrate:fresh
+php artisan migrate:fresh --seed
 
 php artisan db:seed --class=Database\Seeders\MemberSeeder
 php artisan db:seed --class=Database\Seeders\PhoneSeeder
@@ -66,4 +66,5 @@ http://127.0.0.1:8000/members/phones
 http://127.0.0.1:8000/members
 http://127.0.0.1:8000/posts/chat
 http://127.0.0.1:8000/admin/posts/chat
+http://127.0.0.1:8000/members/roles
 ```
