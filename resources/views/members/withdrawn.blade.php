@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Members</title>
+    <title>Withdrawn Members</title>
     <style>
         body {
             font-family: "Segoe UI", "Hiragino Sans", sans-serif;
@@ -27,7 +27,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 640px;
+            min-width: 760px;
         }
 
         th,
@@ -70,13 +70,14 @@
     </style>
 </head>
 <body>
-    <h1>Member 一覧</h1>
+    <h1>退会済み会員 一覧</h1>
+
     <div class="links">
-        <a href="{{ route('members.withdrawn.index') }}">退会済み会員一覧へ</a>
+        <a href="{{ route('members.index') }}">通常の会員一覧へ</a>
     </div>
 
     @if ($members->isEmpty())
-        <p class="empty">データがありません。</p>
+        <p class="empty">退会済み会員はいません。</p>
     @else
         <div class="table-wrap">
             <table>
@@ -85,6 +86,7 @@
                         <th>ID</th>
                         <th>名前</th>
                         <th>年齢</th>
+                        <th>退会年月日</th>
                         <th>投稿数</th>
                         <th>詳細</th>
                     </tr>
@@ -95,6 +97,7 @@
                             <td>{{ $member->id }}</td>
                             <td>{{ $member->name }}</td>
                             <td>{{ $member->age }}</td>
+                            <td>{{ optional($member->withdrawn_on)->format('Y-m-d') }}</td>
                             <td>{{ $member->posts_count }}</td>
                             <td><a href="{{ route('members.show', $member) }}">詳細を見る</a></td>
                         </tr>

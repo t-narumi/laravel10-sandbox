@@ -67,4 +67,5 @@ http://127.0.0.1:8000/members
 http://127.0.0.1:8000/posts/chat
 http://127.0.0.1:8000/admin/posts/chat
 http://127.0.0.1:8000/members/roles
+http://127.0.0.1:8000/members/withdrawn
 ```

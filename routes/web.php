@@ -41,6 +41,19 @@ Route::get('/members', function () {
     ]);
 })->name('members.index');
 
+Route::get('/members/withdrawn', function () {
+    $members = Member::query()
+        ->withdrawn()
+        ->withCount('posts')
+        ->orderByDesc('withdrawn_on')
+        ->orderBy('id')
+        ->get();
+
+    return view('members.withdrawn', [
+        'members' => $members,
+    ]);
+})->name('members.withdrawn.index');
+
 Route::get('/members/{member}', function (Member $member) {
     $member->load([
         'phone',
